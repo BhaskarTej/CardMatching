@@ -91,3 +91,14 @@ class GameState extends ChangeNotifier {
     notifyListeners();
   }
 }
+class CardModel {
+  final String front;
+  final int id;
+  bool isFaceUp;
+
+  CardModel({
+    required this.front,
+    required this.id,
+    this.isFaceUp = false,
+  });
+}
