@@ -102,3 +102,46 @@ class CardModel {
     this.isFaceUp = false,
   });
 }
+import 'package:flutter/material.dart';
+import 'card_model.dart';
+
+class CardWidget extends StatelessWidget {
+  final CardModel card;
+  final VoidCallback onTap;
+
+  const CardWidget({
+    Key? key,
+    required this.card,
+    required this.onTap,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+        decoration: BoxDecoration(
+          color: Colors.blueAccent,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: card.isFaceUp
+            ? Center(
+                child: Text(
+                  card.front,
+                  style: const TextStyle(fontSize: 32),
+                ),
+              )
+            : const Center(
+                child: Icon(
+                  Icons.question_mark,
+                  size: 32,
+                  color: Colors.white,
+                ),
+              ),
+      ),
+    );
+  }
+}
+
